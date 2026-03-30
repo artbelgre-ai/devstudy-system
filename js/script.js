@@ -14,21 +14,33 @@ document.querySelectorAll('[data-page]').forEach(element => {
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 const progressBar = document.getElementById("progressBar");
 
+// 🔥 IMPORTANTE: selecionar corretamente os inputs
+const inputs = document.querySelectorAll("input[type='text'], textarea");
+
 // ======================
 // LOAD DATA
 // ======================
 window.addEventListener("load", () => {
-    const saved = JSON.parse(localStorage.getItem("tasks")) || [];
 
+    // LOAD TASKS
+    const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
     checkboxes.forEach((cb, index) => {
-        if (saved[index]) cb.checked = true;
+        cb.checked = savedTasks[index] || false;
+    });
+
+    // LOAD INPUTS
+    const savedInputs = JSON.parse(localStorage.getItem("inputs")) || [];
+    inputs.forEach((input, index) => {
+        if (savedInputs[index] !== undefined) {
+            input.value = savedInputs[index];
+        }
     });
 
     updateProgress();
 });
 
 // ======================
-// SAVE + UPDATE
+// SAVE TASKS
 // ======================
 checkboxes.forEach(cb => {
     cb.addEventListener('change', () => {
@@ -39,12 +51,23 @@ checkboxes.forEach(cb => {
 
 function saveTasks() {
     const data = [];
-
-    checkboxes.forEach(cb => {
-        data.push(cb.checked);
-    });
-
+    checkboxes.forEach(cb => data.push(cb.checked));
     localStorage.setItem("tasks", JSON.stringify(data));
+}
+
+// ======================
+// SAVE INPUTS
+// ======================
+inputs.forEach(input => {
+    input.addEventListener("input", () => {
+        saveInputs();
+    });
+});
+
+function saveInputs() {
+    const data = [];
+    inputs.forEach(input => data.push(input.value));
+    localStorage.setItem("inputs", JSON.stringify(data));
 }
 
 // ======================
@@ -58,6 +81,6 @@ function updateProgress() {
         if (cb.checked) done++;
     });
 
-    const percent = (done / total) * 100;
+    const percent = total > 0 ? (done / total) * 100 : 0;
     progressBar.style.width = percent + "%";
 }
