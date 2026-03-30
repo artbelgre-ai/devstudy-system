@@ -1,30 +1,30 @@
 # 🚀 DevStudy System
 
-Sistema web pessoal para organização de estudos em programação, focado em produtividade, consistência e evolução como desenvolvedor.
+A personal web-based study management system for developers, focused on productivity, consistency, and continuous growth.
 
 ---
 
-## 📌 Sobre o Projeto
+## 📌 About the Project
 
-O **DevStudy System** foi criado com o objetivo de centralizar e estruturar o processo de aprendizado em tecnologia, permitindo:
+**DevStudy System** was created to centralize and structure the learning process in technology, enabling:
 
-* Planejamento semanal de estudos
-* Organização por stacks (Java, SQL, Spring, etc.)
-* Controle de tarefas e progresso
-* Registro de aprendizados diários
-* Evolução contínua como desenvolvedor
-
----
-
-## 🧠 Motivação
-
-Todo desenvolvedor começa do zero.
-
-Este projeto representa a construção prática de um sistema próprio de estudos — evoluindo junto com minhas habilidades em desenvolvimento web e backend.
+* Weekly study planning
+* Organization by tech stacks (Java, SQL, Spring, etc.)
+* Task and progress tracking
+* Daily learning notes
+* Continuous improvement as a developer
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🧠 Motivation
+
+Every developer starts from zero.
+
+This project represents the practical development of a personal study system — evolving alongside my skills in web development and backend engineering.
+
+---
+
+## 🛠️ Technologies Used
 
 * HTML5
 * CSS3
@@ -32,7 +32,7 @@ Este projeto representa a construção prática de um sistema próprio de estudo
 
 ---
 
-## 📁 Estrutura do Projeto
+## 📁 Project Structure
 
 ```
 devstudy-system/
@@ -57,21 +57,21 @@ devstudy-system/
 
 ---
 
-## ▶️ Como Executar o Projeto
+## ▶️ How to Run the Project
 
-1. Clone este repositório:
+1. Clone this repository:
 
 ```bash
 git clone https://github.com/artbelgre-ai/devstudy-system.git
 ```
 
-2. Acesse a pasta:
+2. Navigate to the project folder:
 
 ```bash
 cd devstudy-system
 ```
 
-3. Abra o arquivo:
+3. Open the file:
 
 ```
 index.html
@@ -79,39 +79,40 @@ index.html
 
 ---
 
-## 📈 Funcionalidades Atuais
+## 📈 Current Features
 
-* Planner de estudos semanal
-* Organização visual por stack
-* Sistema de tarefas (checkbox)
-* Barra de progresso dinâmica
-* Interface responsiva básica
-
----
-
-## 🔮 Roadmap (Próximas Features)
-
-* [ ] Salvamento com LocalStorage
-* [ ] Sistema de páginas por stack
-* [ ] IDE integrada no navegador
-* [ ] Backend com Java + Spring Boot
-* [ ] Autenticação de usuário
-* [ ] Dashboard de evolução
+* Weekly study planner
+* Stack-based organization
+* Task system with checkboxes
+* Dynamic progress bar
+* Basic responsive interface
 
 ---
 
-## 📌 Status do Projeto
+## 🔮 Roadmap (Upcoming Features)
 
-🚧 Em desenvolvimento
+* [ ] LocalStorage integration
+* [ ] Stack-specific pages
+* [ ] In-browser IDE
+* [ ] Backend with Java + Spring Boot
+* [ ] User authentication
+* [ ] Progress dashboard
 
 ---
 
-## 🤝 Contribuição
+## 📌 Project Status
 
-Este é um projeto pessoal de aprendizado, mas sugestões são bem-vindas.
+🚧 In development
 
 ---
 
-## 📄 Licença
+## 🤝 Contribution
 
-Uso livre para fins educacionais.
+This is a personal learning project, but suggestions and feedback are welcome.
+
+---
+
+## 📄 License
+
+Free to use for educational purposes.
+
