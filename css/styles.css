@@ -1,0 +1,139 @@
+:root {
+    --bg: #0e0f11;
+    --panel: #16181c;
+    --card: #1c1f24;
+    --border: #2a2f36;
+    --primary: #e53935;
+    --text: #e6e6e6;
+    --muted: #8b949e;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* LAYOUT */
+.planner {
+    width: 95%;
+    max-width: 1100px;
+    margin: auto;
+    margin-top: 40px;
+    background: var(--panel);
+    border-radius: 18px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 25px;
+    border: 1px solid var(--border);
+}
+
+/* SIDEBAR */
+.planner__days {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.day {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    padding-left: 15px;
+    transition: 0.2s;
+    position: relative;
+}
+
+.day:hover {
+    border-color: var(--primary);
+    transform: translateX(6px);
+}
+
+.day::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 5px;
+    height: 100%;
+}
+
+.day--java::before { background: #f44336; }
+.day--sql::before { background: #2196f3; }
+.day--spring::before { background: #4caf50; }
+.day--js::before { background: #f7df1e; }
+.day--frontend::before { background: #ff9800; }
+.day--php::before { background: #8892be; }
+.day--python::before { background: #3776ab; }
+.day--docker::before { background: #0db7ed; }
+.day--cloud::before { background: #9c27b0; }
+
+/* CONTENT */
+.planner__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 span {
+    color: var(--primary);
+}
+
+/* BUTTON */
+.btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* BOX */
+.box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.box strong {
+    font-size: 0.7rem;
+    color: var(--muted);
+}
+
+/* TODO */
+.todo-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+/* PROGRESS */
+.progress {
+    height: 6px;
+    background: #000;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--primary);
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .planner {
+        grid-template-columns: 1fr;
+    }
+}

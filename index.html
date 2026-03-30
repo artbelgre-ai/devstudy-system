@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DevStudy System</title>
+
+<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+<main class="planner">
+
+    <!-- SIDEBAR -->
+    <aside class="planner__days">
+        <div class="day day--java" data-page="java">☕ <span>Java</span></div>
+        <div class="day day--sql" data-page="sql">🗄️ <span>SQL</span></div>
+        <div class="day day--spring" data-page="spring">🌱 <span>Spring</span></div>
+        <div class="day day--js" data-page="js">⚡ <span>JavaScript</span></div>
+        <div class="day day--frontend" data-page="frontend">🎨 <span>HTML & CSS</span></div>
+        <div class="day day--php" data-page="php">🐘 <span>PHP</span></div>
+        <div class="day day--python" data-page="python">🐍 <span>Python</span></div>
+        <div class="day day--docker" data-page="docker">🐳 <span>Docker</span></div>
+        <div class="day day--cloud" data-page="cloud">☁️ <span>Cloud</span></div>
+    </aside>
+
+    <!-- CONTEÚDO -->
+    <section class="planner__content">
+
+        <header class="header">
+            <h1>DEV<span>STUDY</span></h1>
+            <button class="btn btn--ide" data-page="ide">💻 IDE</button>
+        </header>
+
+        <!-- PRIORIDADES -->
+        <section class="box">
+            <strong>PRIORIDADES</strong>
+            <input placeholder="Meta da semana">
+            <input placeholder="Foco principal (ex: API REST)">
+        </section>
+
+        <!-- TAREFAS -->
+        <section class="box">
+            <strong>TAREFAS</strong>
+
+            <div class="todo-item">
+                <input type="checkbox">
+                <input class="todo-text" placeholder="Tarefa">
+            </div>
+
+            <div class="todo-item">
+                <input type="checkbox">
+                <input class="todo-text" placeholder="Tarefa">
+            </div>
+
+            <div class="todo-item">
+                <input type="checkbox">
+                <input class="todo-text" placeholder="Tarefa">
+            </div>
+
+            <div class="progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </section>
+
+        <!-- NOTAS -->
+        <section class="box">
+            <strong>NOTAS</strong>
+            <textarea placeholder="Anotações gerais..."></textarea>
+            <textarea placeholder="O que aprendi hoje..."></textarea>
+        </section>
+
+    </section>
+
+</main>
+
+<script src="js/script.js"></script>
+</body>
+</html>
