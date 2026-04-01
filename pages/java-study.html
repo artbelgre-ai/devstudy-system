@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Java Study</title>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+:root {
+    --bg: #0e0f11;
+    --card: #1c1f24;
+    --border: #2a2f36;
+    --primary: #e53935;
+    --text: #e6e6e6;
+}
+
+/* BASE */
+body {
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 70px;
+    background: var(--card);
+    border-right: 1px solid var(--border);
+    transition: 0.3s;
+    overflow: hidden;
+}
+
+.sidebar:hover {
+    width: 240px;
+}
+
+/* BLUR */
+.sidebar:hover ~ .main {
+    filter: blur(2px) brightness(0.7);
+    pointer-events: none;
+}
+
+/* HEADER SIDEBAR */
+.sidebar-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.sidebar-header span {
+    display: none;
+}
+
+.sidebar:hover .sidebar-header span {
+    display: inline;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* STEPS */
+.step {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: 0.2s;
+}
+
+.step:hover {
+    background: rgba(255,255,255,0.05);
+    opacity: 1;
+}
+
+.step.active {
+    border-left: 3px solid var(--primary);
+    background: rgba(229,57,53,0.1);
+    opacity: 1;
+}
+
+.step span {
+    display: none;
+}
+
+.sidebar:hover .step span {
+    display: inline;
+}
+
+/* MAIN */
+.main {
+    flex: 1;
+    padding: 30px;
+    transition: 0.3s;
+}
+
+/* TOP */
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* BRAND */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+}
+
+.brand span {
+    color: var(--primary);
+}
+
+/* BADGE ESTUDO ATUAL */
+.current-badge {
+    padding: 8px 14px;
+    border: 1px solid var(--primary);
+    border-radius: 20px;
+    font-size: 13px;
+    background: rgba(229,57,53,0.1);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 0 10px rgba(229,57,53,0.2);
+}
+
+.current-badge span {
+    color: white;
+    font-weight: 600;
+}
+
+/* NOTE */
+.note {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.note-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+textarea {
+    flex: 1;
+    background: #16181d;
+    border: 1px solid var(--border);
+    color: white;
+    border-radius: 8px;
+    padding: 15px;
+    resize: none;
+    font-size: 15px;
+}
+
+/* FOOTER */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.status {
+    font-size: 12px;
+    color: #777;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* BUTTON */
+.btn-save {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    background: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.btn-save:hover {
+    background: var(--primary);
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+
+    <div class="sidebar-header">
+        <i data-lucide="layers"></i>
+        <span>Java Stack</span>
+    </div>
+
+    <div class="step active" onclick="setTopic('Lógica')">
+        <i data-lucide="brain"></i>
+        <span>Lógica</span>
+    </div>
+
+    <div class="step" onclick="setTopic('Condicionais')">
+        <i data-lucide="git-branch"></i>
+        <span>Condicionais</span>
+    </div>
+
+    <div class="step" onclick="setTopic('Loops')">
+        <i data-lucide="repeat"></i>
+        <span>Loops</span>
+    </div>
+
+    <div class="step" onclick="setTopic('POO')">
+        <i data-lucide="box"></i>
+        <span>POO</span>
+    </div>
+
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+    <div class="top">
+
+        <div class="brand">
+            <i data-lucide="cpu"></i>
+            <div>JAVA <span>STACK</span></div>
+        </div>
+
+        <div class="current-badge">
+            <i data-lucide="activity" size="16"></i>
+            ESTUDO ATUAL:
+            <span id="title">Lógica</span>
+        </div>
+
+    </div>
+
+    <div class="note">
+
+        <div class="note-header">
+            <i data-lucide="edit-3"></i>
+            NOTAS DE ESTUDO
+        </div>
+
+        <textarea id="note" placeholder="O que você aprendeu hoje?"></textarea>
+
+        <div class="footer">
+
+            <div class="status" id="status">
+                <i data-lucide="clock"></i>
+                Nenhuma nota salva nesta sessão.
+            </div>
+
+            <button class="btn-save" onclick="save()">
+                <i data-lucide="save"></i>
+                <span>Salvar</span>
+            </button>
+
+        </div>
+
+    </div>
+
+</main>
+
+<script>
+lucide.createIcons();
+
+function setTopic(name) {
+    document.getElementById("title").innerText = name;
+
+    document.querySelectorAll(".step").forEach(el => {
+        el.classList.remove("active");
+    });
+
+    event.currentTarget.classList.add("active");
+}
+
+function save() {
+    const text = document.getElementById("note").value;
+    if (!text) return;
+
+    localStorage.setItem("java_note", text);
+
+    const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+    document.getElementById("status").innerHTML = `
+        <i data-lucide="clock"></i>
+        Último rascunho salvo às ${time}
+    `;
+
+    lucide.createIcons();
+}
+</script>
+
+</body>
+</html>

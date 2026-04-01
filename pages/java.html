@@ -1,58 +1,311 @@
 <!DOCTYPE html>
-
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Java | DevStudy System</title>
+<title>Java Stack</title>
 
 <link rel="stylesheet" href="../css/styles.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<!-- FONTE ANTIGA -->
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 280px;
+    background: var(--card);
+    border-right: 1px solid var(--border);
+    padding: 20px;
+}
+
+.sidebar h1 {
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+}
+
+.sidebar h1 span {
+    color: var(--primary);
+}
+
+.subtitle {
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-bottom: 20px;
+}
+
+/* ITEMS */
+.topic {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.topic:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+.topic-name {
+    font-weight: 600;
+}
+
+.topic-name span {
+    color: var(--primary);
+}
+
+.icon-box {
+    padding: 6px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.topic:hover .icon-box {
+    border-color: var(--primary);
+    box-shadow: 0 0 8px rgba(229,57,53,0.4);
+}
+
+/* MAIN */
+.main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* WELCOME */
+#welcome {
+    text-align: center;
+}
+
+#welcome h2 span {
+    color: var(--primary);
+}
+
+/* ANIMATION */
+.animation {
+    display: none;
+    position: relative;
+    width: 360px;
+    height: 240px;
+}
+
+/* ENVELOPE */
+.envelope {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    transition: 0.8s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.envelope::after {
+    content: "DEVSTUDY";
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--primary);
+    opacity: 0.8;
+}
+
+/* FLAP */
+.flap {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background: #222;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top;
+    transition: 0.6s;
+}
+
+/* PAPER ANTIGO */
+.paper {
+    position: absolute;
+    width: 92%;
+    height: 85%;
+    left: 4%;
+    top: 8%;
+
+    background: #f2f0e6;
+    background-image: url("https://www.transparenttextures.com/patterns/aged-paper.png");
+
+    color: #1a1a1a;
+    padding: 25px;
+
+    font-family: 'Special Elite', cursive;
+
+    opacity: 0;
+    transform: scale(0.9);
+
+    transition: 0.8s cubic-bezier(0.17, 0.88, 0.32, 1.28);
+
+    clip-path: polygon(2% 0%, 98% 2%, 100% 98%, 3% 100%);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.paper h4 {
+    margin: 0;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: #b23a2b;
+    text-transform: uppercase;
+}
+
+.paper p {
+    margin-top: 10px;
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+/* BOTÃO ENTRAR */
+.btn-enter {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background: var(--primary);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    transition: 0.2s;
+}
+
+.btn-enter:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(229,57,53,0.4);
+}
+
+/* ACTIVE STATE */
+.show .flap {
+    transform: rotateX(160deg);
+}
+
+.show .envelope {
+    transform: translateX(-120px) rotateY(-25deg) scale(0.7);
+    filter: blur(4px);
+    opacity: 0.5;
+}
+
+.show .paper {
+    opacity: 1;
+    transform: translateX(90px) scale(1.1) rotate(1deg);
+}
+
+/* BACK BUTTON */
+.back {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+</style>
+
 </head>
 
 <body>
 
-<main class="planner">
+<!-- SIDEBAR -->
+<aside class="sidebar">
 
-```
-<section class="planner__content">
+    <h1>TRILHAS <span>de Estudo</span></h1>
+    <div class="subtitle">Conteúdos disponíveis</div>
 
-    <header class="header">
-        <h1>JAVA <span>STACK</span></h1>
-        <button type="button" class="btn" onclick="window.location.href='../index.html'">⬅ Voltar</button>
-    </header>
+    <div class="topic" onclick="openTopic('JAVA Logic', 'Base da programação: variáveis, loops e lógica.')">
+        <div class="topic-name">JAVA <span>Logic</span></div>
+        <div class="icon-box"><i data-lucide="mail"></i></div>
+    </div>
 
-    <!-- FOCO -->
-    <section class="box">
-        <strong>FOCO JAVA</strong>
-        <input type="text" placeholder="Ex: Spring Boot API">
-    </section>
+    <div class="topic" onclick="openTopic('JAVA POO', 'Orientação a objetos com classes e herança.')">
+        <div class="topic-name">JAVA <span>POO</span></div>
+        <div class="icon-box"><i data-lucide="mail"></i></div>
+    </div>
 
-    <!-- TAREFAS -->
-    <section class="box">
-        <strong>TAREFAS JAVA</strong>
+    <div class="topic" onclick="openTopic('SPRING Boot', 'Criação de APIs modernas com Spring.')">
+        <div class="topic-name">SPRING <span>Boot</span></div>
+        <div class="icon-box"><i data-lucide="mail"></i></div>
+    </div>
 
-        <div class="todo-item">
-            <input type="checkbox">
-            <input type="text" class="todo-text" placeholder="Estudar POO">
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+    <div id="welcome">
+        <h2>Java <span>Stack</span></h2>
+        <p>Selecione um conteúdo para iniciar.</p>
+    </div>
+
+    <div class="animation" id="anim">
+
+        <div class="envelope">
+            <div class="flap"></div>
         </div>
 
-        <div class="todo-item">
-            <input type="checkbox">
-            <input type="text" class="todo-text" placeholder="Criar API REST">
+        <div class="paper">
+            <h4 id="title"></h4>
+            <p id="text"></p>
+
+            <button class="btn-enter" onclick="goToStudy()">
+                <i data-lucide="arrow-right"></i>
+                <span>Entrar no conteúdo</span>
+            </button>
         </div>
 
-        <div class="progress">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-    </section>
+    </div>
 
-</section>
-```
+    <button class="btn back" onclick="window.location.href='../index.html'">
+        ⬅ Voltar
+    </button>
 
 </main>
 
-<script src="../js/script.js"></script>
+<script>
+lucide.createIcons();
+
+function openTopic(title, text) {
+    const anim = document.getElementById("anim");
+    const welcome = document.getElementById("welcome");
+
+    welcome.style.display = "none";
+
+    anim.style.display = "block";
+    anim.classList.remove("show");
+
+    document.getElementById("title").innerText = title;
+    document.getElementById("text").innerText = text;
+
+    setTimeout(() => {
+        anim.classList.add("show");
+    }, 50);
+}
+
+// 👉 NOVO (BOTÃO)
+function goToStudy() {
+    window.location.href = "java-study.html";
+}
+</script>
 
 </body>
 </html>
