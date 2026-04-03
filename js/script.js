@@ -1,4 +1,9 @@
 // ======================
+// STACK CONFIG
+// ======================
+const STACK_KEY = "home";
+
+// ======================
 // NAVIGATION
 // ======================
 document.querySelectorAll('[data-page]').forEach(element => {
@@ -13,8 +18,6 @@ document.querySelectorAll('[data-page]').forEach(element => {
 // ======================
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 const progressBar = document.getElementById("progressBar");
-
-// 🔥 IMPORTANTE: selecionar corretamente os inputs
 const inputs = document.querySelectorAll("input[type='text'], textarea");
 
 // ======================
@@ -23,13 +26,13 @@ const inputs = document.querySelectorAll("input[type='text'], textarea");
 window.addEventListener("load", () => {
 
     // LOAD TASKS
-    const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const savedTasks = JSON.parse(localStorage.getItem(`tasks_${STACK_KEY}`)) || [];
     checkboxes.forEach((cb, index) => {
         cb.checked = savedTasks[index] || false;
     });
 
     // LOAD INPUTS
-    const savedInputs = JSON.parse(localStorage.getItem("inputs")) || [];
+    const savedInputs = JSON.parse(localStorage.getItem(`inputs_${STACK_KEY}`)) || [];
     inputs.forEach((input, index) => {
         if (savedInputs[index] !== undefined) {
             input.value = savedInputs[index];
@@ -52,7 +55,7 @@ checkboxes.forEach(cb => {
 function saveTasks() {
     const data = [];
     checkboxes.forEach(cb => data.push(cb.checked));
-    localStorage.setItem("tasks", JSON.stringify(data));
+    localStorage.setItem(`tasks_${STACK_KEY}`, JSON.stringify(data));
 }
 
 // ======================
@@ -67,7 +70,7 @@ inputs.forEach(input => {
 function saveInputs() {
     const data = [];
     inputs.forEach(input => data.push(input.value));
-    localStorage.setItem("inputs", JSON.stringify(data));
+    localStorage.setItem(`inputs_${STACK_KEY}`, JSON.stringify(data));
 }
 
 // ======================

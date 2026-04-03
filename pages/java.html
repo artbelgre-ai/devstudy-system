@@ -298,11 +298,16 @@ function openTopic(title, text) {
 
     setTimeout(() => {
         anim.classList.add("show");
+        lucide.createIcons(); // 🔥 garante ícones após animação
     }, 50);
 }
 
-// 👉 NOVO (BOTÃO)
+// 👉 BOTÃO COM CONTEXTO
 function goToStudy() {
+    const title = document.getElementById("title").innerText;
+
+    localStorage.setItem("current_java_topic", title);
+
     window.location.href = "java-study.html";
 }
 </script>
